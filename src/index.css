@@ -1,3 +1,18 @@
+html{
+  margin: 0;
+  padding: 0;
+  background-color: #000000
+}
+
+.Loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  color: 	#FFE81F;
+  border: 3px solid black;
+}
+
 .lds-roller {
   display: inline-block;
   position: relative;
@@ -15,7 +30,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #000000;
+  background: 	#FFE81F;
   margin: -4px 0 0 -4px;
 }
 .lds-roller div:nth-child(1) {
