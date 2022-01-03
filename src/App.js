@@ -1,69 +1,84 @@
-import axios from 'axios'
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   max-width: 1200px;
   border: 3px solid black;
+`
+const AllCards = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `
 
 const Card = styled.div`
   display:flex;
   flex-direction: column;
-  width: 300px;
   justify-content: center;
   border: 3px solid green;
+  width: 300px;
   height:auto;
   margin: 10px 20px;
 `
 
 const Nombre = styled.h2`
-  margin: 5px 0;
   text-align: center;
+  margin: 5px 0;
 `
 
 const Info = styled.p`
   font-size: 16px;
   margin: 10px 10px;
 `
+const Buttons = styled.div`
+  border: 3px solid yellow;
+  display:flex;
+  justify-content: center;
+`
 
 const Personajes = () => {
-  const [personajes, setPersonajes] = useState([])
-  const [personajesa, setPersonajesa] = useState([])
-  const [pages, setPages] = ([])
-
-  const baseUrl = 'https://swapi.dev/api/people/'
-  
-  const getIndicatorByCountry = async (page=1) => {  
-    const query = `${baseUrl}/?page=${page}`
-    const response = await axios.get(query)
-    setPersonajesa(response.data.results)
-
-    if (personajesa.next != null) {
-      return personajesa.concat(await getIndicatorByCountry(page+1)) 
-    } else {
-      return personajesa
-    } 
+  const [chars, setChars] = useState([])
+  const [page, setPage] = useState(1)
+  const [loading, setLoading] = useState(false);
+  const handlePrevious = () => {
+    setPage(page-1)
   }
 
-  const getPersonajes = async () => {
-    await axios.get(`https://swapi.dev/api/people/`).then((res) => {
-      const { data } = res
-      setPersonajes(data.results)
-    })
+  const handleNext = () => {
+    setPage(page+1)
   }
 
   useEffect(() =>  {
-    getPersonajes();
-    getIndicatorByCountry();
-  }, [])
+    setLoading(true);
+    fetch(`https://swapi.dev/api/people/?page=${page}`)
+      .then((res) => res.json())
+      .then((data) => setChars(data.results))
+      .catch((error)=> console.log(error))
+      .finally(() => setLoading(false));
+  }, [page])
 
+  if (loading) {
+    return <>
+    <h1>Loading</h1>
+    <div className="lds-roller">
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+    </div>
+  </>;
+  }
 
   return (
-    <Container>      
-      {personajesa.map((personaje, i) => {
+    <Container>
+      <AllCards>
+      {chars.map((personaje, i) => {
         return (
           <Card key={i}>
             <Nombre>{personaje.name}</Nombre>
@@ -86,6 +101,23 @@ const Personajes = () => {
           </Card>
         )
       })}
+      </AllCards>
+      <Buttons>
+      <button
+        className="Pokemons__button"
+        type="button"
+        onClick={handlePrevious}
+      >
+        Anterior Pagina
+      </button>
+      <button
+        className="Pokemons__button"
+        type="button"
+        onClick={handleNext}
+      >
+        Siguiente Pagina
+      </button>
+      </Buttons>
     </Container>
   );
 }
