@@ -29,7 +29,7 @@ Made by AlonsoGaray
 [Star Wars API](https://star-wars-api-example.netlify.app/)
 ![alt text](https://raw.githubusercontent.com/AlonsoGaray/starwars/main/src/img/Page.png)
 
-This exercise is to keep practicing API and useState usage. The goal that we needed to achieve vas to render people using [star wars api](https://swapi.dev/), adding a pagination to display each character.
+This exercise is to keep practicing API and useState usage. The goal that we needed to achieve was to render people using [star wars api](https://swapi.dev/), adding a pagination to display each character.
 
 ### Built With
 
