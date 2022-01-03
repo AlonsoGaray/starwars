@@ -38,6 +38,13 @@ const Buttons = styled.div`
   justify-content: center;
 `
 
+const Button = styled.button`
+  width:100px;
+  height:100px;
+  max-width:100px;
+  max-height:100px;
+`
+
 const Personajes = () => {
   const [chars, setChars] = useState([])
   const [page, setPage] = useState(1)
@@ -103,20 +110,20 @@ const Personajes = () => {
       })}
       </AllCards>
       <Buttons>
-      <button
+      <Button
         className="Pokemons__button"
         type="button"
         onClick={handlePrevious}
       >
         Anterior Pagina
-      </button>
-      <button
+      </Button>
+      <Button
         className="Pokemons__button"
         type="button"
         onClick={handleNext}
       >
         Siguiente Pagina
-      </button>
+      </Button>
       </Buttons>
     </Container>
   );
