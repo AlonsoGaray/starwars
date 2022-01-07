@@ -74,6 +74,6 @@ Distributed under the MIT License.
 
 Alonso Garay - alonsogarayp@gmail.com
 
-Project Link - [https://github.com/AlonsoGaray/starwars.git](https://github.com/AlonsoGaray/starwars.git)
+Project Link - [https://github.com/AlonsoGaray/starwars](https://github.com/AlonsoGaray/starwars)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
